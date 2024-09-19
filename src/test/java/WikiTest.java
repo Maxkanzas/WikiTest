@@ -12,13 +12,14 @@ public class WikiTest {
         Configuration.baseUrl = "https://github.com"; // открываем страницу Selenide в GitHub (абсолютный путь)
         Configuration.pageLoadStrategy = "eager"; // команда для того, чтобы селенид не ждал загрузки всех картинок и тяжелых элементов. Только html.
         Configuration.browserSize = "1920x1080";
-        Configuration.holdBrowserOpen = true;
+//        Configuration.holdBrowserOpen = true;
     }
     @Test
     void WikiTestSelenide() {
         open("/selenide/selenide"); // открываем страницу Selenide в GitHub (относительный путь)
         $("#wiki-tab").click();
         $("#wiki-pages-filter").setValue("SoftAssertions").pressEnter();
+        $(".wiki-rightbar").shouldHave(text("SoftAssertions"));
         $$("ul.filterable-active div a").findBy(text("SoftAssertions")).click();
         $(".markdown-body").shouldHave(text("""
                 Using JUnit5 extend test class:
