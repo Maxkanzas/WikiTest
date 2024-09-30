@@ -15,11 +15,16 @@ public class WikiTest {
 //        Configuration.holdBrowserOpen = true;
     }
     @Test
-    void WikiTestSelenide() {
+    void wikiTestSelenide() {
         open("/selenide/selenide"); // открываем страницу Selenide в GitHub (относительный путь)
+        executeJavaScript("$('#fixedban').remove()"); //убрать окна и баннеры
+        executeJavaScript("$('footer').remove()"); //убрать окна и баннеры
         $("#wiki-tab").click();
         $("#wiki-pages-filter").setValue("SoftAssertions").pressEnter();
-        $(".wiki-rightbar").shouldHave(text("SoftAssertions"));
+//        $(".wiki-rightbar").shouldHave(text("SoftAssertions"));
+
+        $(".wiki-rightbar").$("[class=\"Link--muted js-wiki-more-pages-link btn-link mx-auto f6\"]").click();
+
         $$("ul.filterable-active div a").findBy(text("SoftAssertions")).click();
         $(".markdown-body").shouldHave(text("""
                 Using JUnit5 extend test class:
