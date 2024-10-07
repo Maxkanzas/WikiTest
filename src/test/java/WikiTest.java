@@ -17,8 +17,6 @@ public class WikiTest {
     @Test
     void wikiTestSelenide() {
         open("/selenide/selenide"); // открываем страницу Selenide в GitHub (относительный путь)
-        executeJavaScript("$('#fixedban').remove()"); //убрать окна и баннеры
-        executeJavaScript("$('footer').remove()"); //убрать окна и баннеры
         $("#wiki-tab").click();
         $("#wiki-pages-filter").setValue("SoftAssertions").pressEnter();
 //        $(".wiki-rightbar").shouldHave(text("SoftAssertions"));
